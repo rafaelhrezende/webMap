@@ -1,0 +1,11 @@
+.action{
+  border-width: thin;
+  border-style: dashed;
+}
+.actionSucess{
+  border-color: Green;
+}
+.actionFail {
+  border-color: Red;
+  background-color: #ffb3b3;
+}
