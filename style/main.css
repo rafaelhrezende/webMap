@@ -25,3 +25,16 @@ button{
   width: 45%;
   height: 5%;
 }
+.header-button{
+  width: 10%
+}
+.inputText {
+  width: 60%;
+}
+.header{
+  padding-left:5%;
+  padding-bottom: 1%
+}
+.singleInputText{
+  width: 20%;
+}
