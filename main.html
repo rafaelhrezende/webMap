@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Web Development Learn.</title>
+  </head>
+  <script src="vue.js" charset="utf-8"></script>
+  <script src="vueComponents.js" charset="utf-8"></script>
+  <link rel="stylesheet" type="text/css" href="style/style.css">
+  <body >
+    <section id='HeaderControls' class='header'>
+      <header >{{title}}</header>
+      <input v-model='startPoint'>
+      <input v-model='routePoints' class='form__input--large'>
+      <button v-on:click='loadLocations'>capture</button>
+      <button v-on:click='setRoute'>Set Route</button>
+      <button v-on:click='markOnMap'>Mark Points</button>
+    </section>
+    <section class="content">
+      <aside id='sideArea' class="sideArea">
+        <list-message
+          v-for='item in locations' v-bind:content="item" v-bind:key='item.id'>
+        </list-message>
+      </aside>
+      <section class="mapArea">
+          <div id="map" > </div>
+      </section>
+    </section>
+
+    <script src="vueController.js" charset="utf-8"></script>
+    <script src="mapController.js" charset="utf-8"></script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxMzWIsimtbOffUz7lpjGA1M9WzSeylgM&v=3&callback=initMap" charset="utf-8"></script>
+  </body>
+
+</html>

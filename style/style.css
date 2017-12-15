@@ -1,0 +1,40 @@
+.header {
+  height: 10%;
+  width: 100%;
+  border: double;
+}
+.mapArea {
+  height: 100%;
+  width: 80%;
+  float: right;
+  position: relative;
+}
+#map {
+  height: 100%;
+  width: 100%;
+  overflow: visible;
+}
+aside {
+  display: scroll;
+  float: left;
+  height: 100%;
+  width: 20%;
+  border: double;
+}
+.content {
+  width: 100%;
+  height: 85%;
+  display: flex;
+  border: double;
+}
+input {
+  width: 25%;
+}
+.form__input--large {
+  width: 70%;
+}
+html,
+body {
+  width: 99%;
+  height: 100%;
+}
