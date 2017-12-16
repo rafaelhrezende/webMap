@@ -11,12 +11,24 @@
     <section id='HeaderControls' class='header'>
       <header >{{title}}</header>
       <input v-model='startPoint'>
-      <input v-model='routePoints' class='form__input--large'>
+      <input class='form__input--large' v-model='routePoints' >
       <button v-on:click='loadLocations'>capture</button>
       <button v-on:click='setRoute'>Set Route</button>
       <button v-on:click='markOnMap'>Mark Points</button>
+      <input class='form__input--small' v-model='color'>
+      <a href="http://erikasarti.net/html/tabela-cores/" target="_blank">Colors</a>
+      <nav class="header__nav">
+          <section class="header__nav__bus">
+            <a href="#" v-on:click='load616'>616</a>
+            <a href="#" v-on:click='load617'>617</a>
+          </section>
+        <section class="header__nav__development">
+          <a href="https://github.com/rafaelhrezende/webMap" target="_blank">GITHUB</a>
+          <a href="/README.md" target="_blank">Read ME</a>
+      </section>
+      </nav>
     </section>
-    <section class="content">
+    <section class="aside__content">
       <aside id='sideArea' class="sideArea">
         <list-message
           v-for='item in locations' v-bind:content="item" v-bind:key='item.id'>
@@ -26,7 +38,7 @@
           <div id="map" > </div>
       </section>
     </section>
-
+    <script src="busInfo.js" charset="utf-8"></script>
     <script src="vueController.js" charset="utf-8"></script>
     <script src="mapController.js" charset="utf-8"></script>
     <script async defer

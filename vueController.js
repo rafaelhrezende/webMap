@@ -3,7 +3,8 @@ var vueController = new Vue({
   data: {
     title: 'Map Lab',
     startPoint: 'Start Point',
-    routePoints: 'Route Points'
+    routePoints: 'Route Points',
+    color: 'FF776B|000000'
   },
   methods: {
     loadLocations: function(){
@@ -22,14 +23,21 @@ var vueController = new Vue({
     },
     markOnMap: function () {
       for (var index in vueMapController.locations){
-        setMarkOnMap(map, vueMapController.locations[index]);
+        setMarkOnMap(map, vueMapController.locations[index], this.color);
           var start = new Date().getTime(); //Avoid Over query Limit (Temp...)
           while (new Date().getTime() < start + 750);
       }
     },
     setRoute: function(){
       setDirections(vueMapController.locations);
-    }
+    },
+    load616: function(){
+      loadBusInfo(616);
+    },
+    load617: function(){
+        loadBusInfo(617);
+      }
+
   }
 })
 

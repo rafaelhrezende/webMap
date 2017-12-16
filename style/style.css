@@ -3,6 +3,22 @@
   width: 100%;
   border: double;
 }
+.header__nav {
+  position: relative;
+  width: 50%;
+  display: inline-block;
+  float: right;
+}
+.header__nav__development {
+  width: 20%;
+  display: inline-block;
+  float: right;
+}
+.header__nav__bus {
+  width: 80%;
+  display: inline-block;
+  float: left;
+}
 .mapArea {
   height: 100%;
   width: 80%;
@@ -21,7 +37,7 @@ aside {
   width: 20%;
   border: double;
 }
-.content {
+.aside__content {
   width: 100%;
   height: 85%;
   display: flex;
@@ -32,6 +48,9 @@ input {
 }
 .form__input--large {
   width: 70%;
+}
+.form__input--small {
+  width: 10%;
 }
 html,
 body {

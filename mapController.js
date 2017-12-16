@@ -12,14 +12,14 @@ function initMap() {
    directionsService = new google.maps.DirectionsService();
 }
 
-function setMarkOnMap( resultsMap, locationItem){
+function setMarkOnMap( resultsMap, locationItem, markColor){
   geocoder.geocode({'address': locationItem.location}, function(results, status) {
          if (status === 'OK') {
            resultsMap.setCenter(results[0].geometry.location);
            var marker = new google.maps.Marker({
              map: resultsMap,
              position: results[0].geometry.location,
-             icon:'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ locationItem.id +'|FF776B|000000',
+             icon:'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ locationItem.id + '|'+ markColor,
            });
            locationItem.status = 'OK';
          }
@@ -66,7 +66,7 @@ function setDirections(locations){
     setdirectionsOnMap(locationsText[0], locationsText.slice(1,length - 1), lastAddress)
   }
   else {
-    //create a rout to every 20 locations. 
+    //create a rout to every 20 locations.
     var startIndex = 0;
     var lastIndex = 20;
     var noWaypointsLeft = false;
