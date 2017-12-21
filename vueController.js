@@ -2,15 +2,12 @@ var vueController = new Vue({
   el: '#HeaderControls',
   data: {
     title: 'Map Lab',
-    startPoint: 'Start Point',
-    routePoints: 'Route Points',
+    routePoints: 'Route Points (Separate by "to:")',
     color: 'FF776B|000000'
   },
   methods: {
     loadLocations: function(){
-      vueMapController.locations = [
-        {id:0, location: this.startPoint.replace(new RegExp('\\+', 'g'), ' '), status:'W',showInput:false}
-      ];
+      vueMapController.locations = [];
       var arrayLocations = this.routePoints.split('to:');
       for (var index in arrayLocations) {
           var location = {id:Number(index)+1,

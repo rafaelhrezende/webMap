@@ -1,7 +1,7 @@
 var map;
 var geocoder;
-var directionsDisplay;
-var directionsService;
+
+var usedDirectionsDisplays = [];
 
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
@@ -9,7 +9,7 @@ function initMap() {
     zoom: 13
   });
    geocoder = new google.maps.Geocoder();
-   directionsService = new google.maps.DirectionsService();
+//   map.working = false;
 }
 
 function setMarkOnMap( resultsMap, locationItem, markColor){
@@ -31,8 +31,10 @@ function setMarkOnMap( resultsMap, locationItem, markColor){
        });
 }
 
-function setdirectionsOnMap(firstAddress, addresses, lastAddress){
+function setdirectionsOnMap(directionsDisplay,directionsService,firstAddress, addresses, lastAddress){
   directionsDisplay = new google.maps.DirectionsRenderer();
+
+  usedDirectionsDisplays.push(directionsDisplay);
   directionsDisplay.setMap(map);
   var request = {
     origin: firstAddress,
@@ -48,6 +50,7 @@ function setdirectionsOnMap(firstAddress, addresses, lastAddress){
 
   directionsService.route(request, function(result, status){
     if (status === 'OK') {
+      map.working = true;
       directionsDisplay.setDirections(result);
     }
   })
@@ -60,34 +63,51 @@ function setDirections(locations){
   });
 
   // google maps api limits the waypoints, this is used to allow us to combine routes.
+  var directionsDisplay;
+  var directionsService = new google.maps.DirectionsService();
   var length = locationsText.length;
   if (length < 20) {
     var lastAddress = locationsText[length - 1];
-    setdirectionsOnMap(locationsText[0], locationsText.slice(1,length - 1), lastAddress)
+    setdirectionsOnMap(directionsDisplay,directionsService,locationsText[0], locationsText.slice(1,length - 1), lastAddress)
   }
   else {
     //create a rout to every 20 locations.
     var startIndex = 0;
     var lastIndex = 20;
     var noWaypointsLeft = false;
+
     do {
         var startAddress = locationsText[startIndex];
         var lastAddress = locationsText[lastIndex];
-        setdirectionsOnMap(startAddress, locationsText.slice(startIndex,lastIndex), lastAddress)
-        startIndex = lastIndex;
+        setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress)
+        startIndex = lastIndex+1;
         lastIndex += 20;
         if (lastIndex >  locationsText.length){
           lastIndex = locationsText.length -1;
           var startAddress = locationsText[startIndex];
           var lastAddress = locationsText[lastIndex];
-          setdirectionsOnMap(startAddress, locationsText.slice(startIndex,lastIndex), lastAddress)
+          setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress)
           noWaypointsLeft = true;
         }
-
     } while (!noWaypointsLeft);
   }
 }
 
 function clearMap(){
-  directionsDisplay.setMap(null);
+  for (var i = 0; i < usedDirectionsDisplays.length; i++) {
+    usedDirectionsDisplays[i].setMap(null);
+  }
 }
+
+// function waitMap(){
+//   do {
+//   console.log('map request: fail - Map is working.');
+//  }
+//   while(map.working)
+//   console.log('map is available.');
+// }
+// function lockmap(){
+//   map.working = true;
+//   console.log('map locked.');
+//
+// }
