@@ -15,6 +15,7 @@
       <button v-on:click='loadLocations'>capture</button>
       <button v-on:click='setRoute'>Set Route</button>
       <button v-on:click='markOnMap'>Mark Points</button>
+      <button v-on:click='clearMap'>Clear Map</button>
       <input class='form__input--small' v-model='color'>
       <a href="http://erikasarti.net/html/tabela-cores/" target="_blank">Colors</a>
       <nav class="header__nav">
@@ -28,6 +29,7 @@
       </section>
       </nav>
     </section>
+
     <section class="aside__content">
       <aside id='sideArea' class="sideArea">
         <list-message
@@ -38,6 +40,7 @@
           <div id="map" > </div>
       </section>
     </section>
+
     <script src="busInfo.js" charset="utf-8"></script>
     <script src="vueController.js" charset="utf-8"></script>
     <script src="mapController.js" charset="utf-8"></script>

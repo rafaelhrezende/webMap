@@ -87,3 +87,7 @@ function setDirections(locations){
     } while (!noWaypointsLeft);
   }
 }
+
+function clearMap(){
+  directionsDisplay.setMap(null);
+}

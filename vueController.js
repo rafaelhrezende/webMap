@@ -9,13 +9,14 @@ var vueController = new Vue({
   methods: {
     loadLocations: function(){
       vueMapController.locations = [
-        {id:0, location: this.startPoint.replace(new RegExp('\\+', 'g'), ' '), status:'W'}
+        {id:0, location: this.startPoint.replace(new RegExp('\\+', 'g'), ' '), status:'W',showInput:false}
       ];
       var arrayLocations = this.routePoints.split('to:');
       for (var index in arrayLocations) {
           var location = {id:Number(index)+1,
             location: arrayLocations[index].replace(new RegExp('\\+', 'g'), ' '),
-            status:'W'
+            status:'W',
+            showInput:false
           };
           vueMapController.locations.push(location);
       }
@@ -30,6 +31,9 @@ var vueController = new Vue({
     },
     setRoute: function(){
       setDirections(vueMapController.locations);
+    },
+    clearMap: function(){
+      clearMap();
     },
     load616: function(){
       loadBusInfo(616);
