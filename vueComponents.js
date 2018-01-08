@@ -5,3 +5,11 @@ Vue.component('list-message', {
               '<input class="form__input--large" v-show="content.showInput" v-model="content.location"/>' +
             '</li>'
 })
+
+Vue.component('add-location', {
+  props: ['content'],
+  template: '<section>'+
+                '<input class="form__input--large" v-model="content.data.location" /> '+
+                 '<button v-on:click="content.actionAdd">Add</button>'+
+            '</section>'
+})

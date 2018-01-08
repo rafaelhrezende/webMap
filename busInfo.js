@@ -1,4 +1,5 @@
 function loadBusInfo(bus){
+  vueController.showCapture = !vueController.showCapture;
   if (bus == 616){
     vueController.startPoint = bus616.startPoint;
     vueController.routePoints = bus616.routePoints;

@@ -6,17 +6,20 @@
   </head>
   <script src="vue.js" charset="utf-8"></script>
   <script src="vueComponents.js" charset="utf-8"></script>
+  <script src="model.js" charset="utf-8"></script>
   <link rel="stylesheet" type="text/css" href="style/style.css">
   <body >
     <section id='HeaderControls' class='header'>
-      <header >{{title}}</header> 
-      <input class='form__input--large' v-model='routePoints' >
-      <button v-on:click='loadLocations'>capture</button>
+      <header >{{title}}</header>
       <button v-on:click='setRoute'>Set Route</button>
       <button v-on:click='markOnMap'>Mark Points</button>
       <button v-on:click='clearMap'>Clear Map</button>
+      <input class='form__input--large' v-model='routePoints' v-show='showCapture'>
+      <button v-on:click='loadLocations' v-show='showCapture'>capture</button>
+      <br/>
       <input class='form__input--small' v-model='color'>
       <a href="http://erikasarti.net/html/tabela-cores/" target="_blank">Colors</a>
+
       <nav class="header__nav">
           <section class="header__nav__bus">
             <a href="#" v-on:click='load616'>616</a>
@@ -31,6 +34,9 @@
 
     <section class="aside__content">
       <aside id='sideArea' class="sideArea">
+        <section>
+            <add-location v-bind:content='newLocation'></add-location>
+        </section>
         <list-message
           v-for='item in locations' v-bind:content="item" v-bind:key='item.id'>
         </list-message>

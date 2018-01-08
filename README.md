@@ -14,7 +14,8 @@ To do it you need to get the information of all stops on BHTrans site (At some p
   At line 52 to 55 exists a comment with the information we need. We get the start point at parameter saddr and the route at daddr parameter.
 
 # Web Map Page detail
-  * Start Point and Route Points are locations (text address) that will be used on the map.
-  * Captute: Will get the thata from input text and transform in a array of locations.
-  * Set route: Will call google maps api to make a route on map with all bus's stop as waypoint.
-  * Mark Point: Try to create a mak on map for each bus's stop.
+  * To add a new address. Go to side menu and type the address into the text box. Then click add.
+  * To request a route between the locations, click in 'Set Route'
+  * To request a single mark at each location, click in 'Mark'
+  * The 'Clear Map' button will try to remove itens from map.
+  

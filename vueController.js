@@ -3,21 +3,25 @@ var vueController = new Vue({
   data: {
     title: 'Map Lab',
     routePoints: 'Route Points (Separate by "to:")',
-    color: 'FF776B|000000'
+    color: 'FF776B|000000',
+    showCapture: false
   },
   methods: {
     loadLocations: function(){
       vueMapController.locations = [];
       var arrayLocations = this.routePoints.split('to:');
       for (var index in arrayLocations) {
-          var location = {id:Number(index)+1,
-            location: arrayLocations[index].replace(new RegExp('\\+', 'g'), ' '),
-            status:'W',
-            showInput:false
-          };
+          var location = new Location(
+            Number(index)+1,
+            arrayLocations[index].replace(new RegExp('\\+', 'g'), ' ')
+          );
           vueMapController.locations.push(location);
       }
-
+      this.showCapture = false;
+    },
+    loadLocation: function(location){
+      var newLocation = new Location(vueMapController.locations.length+1, location.location);
+      vueMapController.locations.push(newLocation);
     },
     markOnMap: function () {
       for (var index in vueMapController.locations){
@@ -45,6 +49,12 @@ var vueController = new Vue({
 var vueMapController = new Vue({
   el:'#sideArea',
   data: {
-      locations: null
+      locations: [],
+      newLocation: {
+        data:   new Location(0,'Set Location'),
+        actionAdd: function(){
+          vueController.loadLocation(vueMapController.newLocation.data);
+        }
+      }
     }
 })
