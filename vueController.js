@@ -35,13 +35,7 @@ var vueController = new Vue({
     },
     clearMap: function(){
       clearMap();
-    },
-    load616: function(){
-      loadBusInfo(616);
-    },
-    load617: function(){
-        loadBusInfo(617);
-      }
+    }
 
   }
 })
@@ -57,4 +51,22 @@ var vueMapController = new Vue({
         }
       }
     }
+})
+
+var vueBHTransController = new Vue({
+  el:'#IntBHTrans',
+  data:{
+    busCode: "s10"
+  },
+  methods: {
+  load616: function(){
+    loadBusInfo(616);
+  },
+  load617: function(){
+      loadBusInfo(617);
+    },
+  Search: function(){
+    BHTransIntegration(this.busCode);
+  }
+  }
 })

@@ -9,7 +9,7 @@ Vue.component('list-message', {
 Vue.component('add-location', {
   props: ['content'],
   template: '<section>'+
-                '<input class="form__input--large" v-model="content.data.location" /> '+
+                '<input class="form__input--large" v-model="content.data.location"/> '+
                  '<button v-on:click="content.actionAdd">Add</button>'+
             '</section>'
 })
