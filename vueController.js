@@ -4,7 +4,8 @@ var vueController = new Vue({
     title: 'Map Lab',
     routePoints: 'Route Points (Separate by "to:")',
     color: 'FF776B|000000',
-    showCapture: false
+    showCapture: false,
+    class_button: ["btn", "btn-sm", "btn-primary"]
   },
   methods: {
     loadLocations: function(){
@@ -46,6 +47,7 @@ var vueMapController = new Vue({
   data: {
       locations: [],
       newLocation: {
+        css: {class_button: vueController.class_button},
         data:   new Location(0,'Set Location'),
         actionAdd: function(){
           vueController.loadLocation(vueMapController.newLocation.data);

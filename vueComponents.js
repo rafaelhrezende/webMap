@@ -10,6 +10,6 @@ Vue.component('add-location', {
   props: ['content'],
   template: '<section>'+
                 '<input class="form__input--large" v-model="content.data.location" @keyup.enter="content.actionAdd"/> '+
-                 '<button v-on:click="content.actionAdd" >Add</button>'+
+                 '<button v-bind:class="content.css.class_button" v-on:click="content.actionAdd" >Add</button>'+
             '</section>'
 })
