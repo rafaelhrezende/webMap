@@ -35,6 +35,7 @@ var vueController = new Vue({
     },
     clearMap: function(){
       clearMap();
+      vueMapController.locations = [];
     }
 
   }
@@ -48,6 +49,7 @@ var vueMapController = new Vue({
         data:   new Location(0,'Set Location'),
         actionAdd: function(){
           vueController.loadLocation(vueMapController.newLocation.data);
+          vueMapController.newLocation.data  = new Location(0,'');
         }
       }
     }
