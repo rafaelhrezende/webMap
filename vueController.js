@@ -27,8 +27,10 @@ var vueController = new Vue({
       vueMapController.locations.push(newLocation);
     },
     markOnMap: function () {
-      for (var index in vueMapController.locations){
-        setMarkOnMap(map, vueMapController.locations[index], this.color);
+      var activatedItems = vueMapController.locations.filter(function (elem) {  if (elem.active == true) return elem});
+
+      for (var index in activatedItems){
+        setMarkOnMap(map, activatedItems[index], this.color);
           var start = new Date().getTime(); //Avoid Over query Limit (Temp...)
           while (new Date().getTime() < start + 750);
       }
@@ -54,6 +56,11 @@ var vueMapController = new Vue({
         actionAdd: function(){
           vueController.loadLocation(vueMapController.newLocation.data);
           vueMapController.newLocation.data  = new Location(0,'');
+        },
+        actionCheckAll (state){
+          for (var itemI in vueMapController.locations){
+            vueMapController.locations[itemI].active = state;
+          }
         }
       }
     }

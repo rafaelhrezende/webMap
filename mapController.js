@@ -13,6 +13,8 @@ function initMap() {
 }
 
 function setMarkOnMap( resultsMap, locationItem, markColor){
+  if (!locationItem.active)
+    return;
   var iconUrl = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+locationItem.id.toString()+'|'+ locationItem.getMarkColor();
   //console.log(iconUrl);
   geocoder.geocode({'address': locationItem.location}, function(results, status) {
@@ -61,7 +63,8 @@ function setdirectionsOnMap(directionsDisplay,directionsService,firstAddress, ad
 
 function setDirections(locations){
 //get just location`s text.
-  var locationsText = locations.map(function (item){
+  var activatedItems = vueMapController.locations.filter(function (elem) {  if (elem.active == true) return elem});
+  var locationsText = activatedItems.map(function (item){
     return item.location;
   });
 
