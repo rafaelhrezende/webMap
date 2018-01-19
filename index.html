@@ -17,16 +17,11 @@
       <button v-bind:class='class_button' v-on:click='setRoute'>Set Route</button>
       <button v-bind:class='class_button' v-on:click='markOnMap'>Mark Points</button>
       <button v-bind:class='class_button' v-on:click='clearMap'>Clear Map</button>
-      <input  class='form__input--large' v-model='routePoints' v-show='showCapture'>
-      <button v-bind:class='class_button' v-on:click='loadLocations' v-show='showCapture'>capture</button>
+      <input  class='form__input--large' v-model='routePoints' >
+      <button v-bind:class='class_button' v-on:click='loadLocations' >capture</button>
       <!-- <br/>
       <input class='form__input--small' v-model='color'>
       <a href="http://erikasarti.net/html/tabela-cores/" target="_blank">Colors</a> -->
-
-      <section class="header__nav__development">
-        <a href="https://github.com/rafaelhrezende/webMap" target="_blank">GITHUB</a>
-        <a href="/README.md" target="_blank">Read ME</a>
-    </section>
 
     </div>
     </section>
@@ -41,7 +36,7 @@
     </section>
 
     <section class="aside__content">
-      <aside id='sideArea' class="sideArea jumbotron">
+      <aside id='sideArea' class="sideArea" data-spy="scroll">
         <section>
             <add-location v-bind:content='newLocation'></add-location>
         </section>
@@ -54,8 +49,13 @@
       </section>
     </section>
 
+    <footer class="">
+      <a href="https://github.com/rafaelhrezende/webMap" target="_blank">GITHUB</a>
+      <a href="https://github.com/rafaelhrezende/webMap/blob/master/README.md" target="_blank">Read ME</a>
+    </footer>
+
     <script src="busInfo.js" charset="utf-8"></script>
-<script src="Integrations\BHTrans.js" charset="utf-8"></script>
+    <script src="Integrations\BHTrans.js" charset="utf-8"></script>
     <script src="vueController.js" charset="utf-8"></script>
     <script src="mapController.js" charset="utf-8"></script>
     <script async defer

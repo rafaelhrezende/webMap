@@ -13,13 +13,16 @@ function initMap() {
 }
 
 function setMarkOnMap( resultsMap, locationItem, markColor){
+  var iconUrl = 'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+locationItem.id.toString()+'|'+ locationItem.getMarkColor();
+  //console.log(iconUrl);
   geocoder.geocode({'address': locationItem.location}, function(results, status) {
          if (status === 'OK') {
            resultsMap.setCenter(results[0].geometry.location);
            var marker = new google.maps.Marker({
              map: resultsMap,
              position: results[0].geometry.location,
-             icon:'https://chart.googleapis.com/chart?chst=d_map_pin_letter&chld='+ locationItem.id + '|'+ markColor,
+             icon: iconUrl,
+            // label: {text: locationItem.id.toString(), color: "white"}
            });
            locationItem.status = 'OK';
          }

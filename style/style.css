@@ -9,11 +9,6 @@
   display: inline-block;
   float: right;
 }
-.header__nav__development {
-  width: 20%;
-  display: inline-block;
-  float: right;
-}
 .header__nav__bus {
   width: 80%;
   display: inline-block;
@@ -36,6 +31,7 @@ aside {
   height: 100%;
   width: 20%;
   border: double;
+  overflow-y: scroll;
 }
 .aside__content {
   width: 100%;
@@ -51,6 +47,9 @@ input {
 }
 .form__input--small {
   width: 10%;
+}
+.form__input--short {
+  width: 30%;
 }
 html,
 body {

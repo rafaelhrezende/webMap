@@ -9,19 +9,21 @@ var vueController = new Vue({
   },
   methods: {
     loadLocations: function(){
-      vueMapController.locations = [];
+      //vueMapController.locations = [];
       var arrayLocations = this.routePoints.split('to:');
+      let initialIndex = vueMapController.locations.length+1;
       for (var index in arrayLocations) {
           var location = new Location(
-            Number(index)+1,
+            initialIndex ++,
             arrayLocations[index].replace(new RegExp('\\+', 'g'), ' ')
           );
+          location.color = '#563d7c';
           vueMapController.locations.push(location);
       }
-      this.showCapture = false;
     },
     loadLocation: function(location){
       var newLocation = new Location(vueMapController.locations.length+1, location.location);
+      newLocation.color = '#563d7c';
       vueMapController.locations.push(newLocation);
     },
     markOnMap: function () {
@@ -57,20 +59,20 @@ var vueMapController = new Vue({
     }
 })
 
-var vueBHTransController = new Vue({
-  el:'#IntBHTrans',
-  data:{
-    busCode: "s10"
-  },
-  methods: {
-  load616: function(){
-    loadBusInfo(616);
-  },
-  load617: function(){
-      loadBusInfo(617);
-    },
-  Search: function(){
-    BHTransIntegration(this.busCode);
-  }
-  }
-})
+// var vueBHTransController = new Vue({
+//   el:'#IntBHTrans',
+//   data:{
+//     busCode: "s10"
+//   },
+//   methods: {
+//   load616: function(){
+//     loadBusInfo(616);
+//   },
+//   load617: function(){
+//       loadBusInfo(617);
+//     },
+//   Search: function(){
+//     BHTransIntegration(this.busCode);
+//   }
+//   }
+// })
