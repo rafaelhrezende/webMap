@@ -3,23 +3,29 @@ var vueController = new Vue({
   data: {
     title: 'Map Lab',
     routePoints: 'Route Points (Separate by "to:")',
-    color: 'FF776B|000000',
+    color: '#FF776B',
     showCapture: false,
     class_button: ["btn", "btn-sm", "btn-primary"]
   },
   methods: {
     loadLocations: function(){
-      //vueMapController.locations = [];
-      var arrayLocations = this.routePoints.split('to:');
-      let initialIndex = vueMapController.locations.length+1;
-      for (var index in arrayLocations) {
-          var location = new Location(
-            initialIndex ++,
-            arrayLocations[index].replace(new RegExp('\\+', 'g'), ' ')
-          );
-          location.color = '#563d7c';
-          vueMapController.locations.push(location);
+      if (this.routePoints.indexOf('to:') == -1 && this.routePoints.indexOf('\t') >-1 ){
+        var bhtrans = new BHTransIntegration(this.routePoints, vueMapController.locations.length+1);
+        bhtrans.afterAddressAdd = "Belo Horizonte. MG";
+        bhtrans.FromOldSiteVersionTable(vueMapController.locations);
       }
+      else {
+        var arrayLocations = this.routePoints.split('to:');
+        let initialIndex = vueMapController.locations.length+1;
+        for (var index in arrayLocations) {
+            var location = new Location(
+              initialIndex ++,
+              arrayLocations[index].replace(new RegExp('\\+', 'g'), ' ')
+            );
+            location.color = '#563d7c';
+            vueMapController.locations.push(location);
+        }
+    }
     },
     loadLocation: function(location){
       var newLocation = new Location(vueMapController.locations.length+1, location.location);
@@ -36,11 +42,10 @@ var vueController = new Vue({
       }
     },
     setRoute: function(){
-      setDirections(vueMapController.locations);
+      setDirections(vueMapController.locations, this.color);
     },
     clearMap: function(){
       clearMap();
-      vueMapController.locations = [];
     }
 
   }
@@ -61,6 +66,9 @@ var vueMapController = new Vue({
           for (var itemI in vueMapController.locations){
             vueMapController.locations[itemI].active = state;
           }
+        },
+        actionClear(){
+          vueMapController.locations = [];
         }
       }
     }

@@ -13,16 +13,15 @@
   <body >
     <section>
     <section id='HeaderControls' class='navbar-default'>
-      <div class='conteiner-fluid'>
-      <button v-bind:class='class_button' v-on:click='setRoute'>Set Route</button>
-      <button v-bind:class='class_button' v-on:click='markOnMap'>Mark Points</button>
-      <button v-bind:class='class_button' v-on:click='clearMap'>Clear Map</button>
-      <input  class='form__input--large' v-model='routePoints' >
-      <button v-bind:class='class_button' v-on:click='loadLocations' >capture</button>
-      <!-- <br/>
-      <input class='form__input--small' v-model='color'>
-      <a href="http://erikasarti.net/html/tabela-cores/" target="_blank">Colors</a> -->
-
+      <div class='conteiner-fluid input-group input-group-justified'>
+        <div class='btn-group btn-group-justified'>
+          <button v-bind:class='class_button' v-on:click='setRoute'>Set Route</button>
+          <input class=" col-2" v-model="color" type="color"  > 
+          <button v-bind:class='class_button' v-on:click='markOnMap'>Mark Points</button>
+          <button v-bind:class='class_button' v-on:click='clearMap'>Clear Map</button>
+        </div>
+        <input  class='form__input--large' v-model='routePoints' >
+        <button v-bind:class='class_button' v-on:click='loadLocations' >capture</button>
     </div>
     </section>
     <!-- <nav class="header__nav">
@@ -35,7 +34,7 @@
     </nav> -->
     </section>
 
-    <section class="aside__content">
+    <section class="aside__content" >
       <aside id='sideArea' class="sideArea" data-spy="scroll">
         <section>
             <add-location v-bind:content='newLocation'></add-location>

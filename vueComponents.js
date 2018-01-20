@@ -10,11 +10,16 @@ Vue.component('list-message', {
 
 Vue.component('add-location', {
   props: ['content'],
-  template: '<section>'+
-                '<input class="form__input--large" v-model="content.data.location" @keyup.enter="content.actionAdd"/> '+
-                 '<button v-bind:class="content.css.class_button" v-on:click="content.actionAdd" >Add</button>'+
-                 '<button v-bind:class="content.css.class_button" v-on:click="content.actionCheckAll(true)" >Check All</button> '+
-                 '<button v-bind:class="content.css.class_button" v-on:click="content.actionCheckAll(false)" >Uncheck All</button>'+
-
-            '</section>'
+  template:
+  '<section>'+
+      '<div class="input-group input-group-justified">'+
+          '<input class="form__input--large" v-model="content.data.location" @keyup.enter="content.actionAdd"/> '+
+          '<button v-bind:class="content.css.class_button" v-on:click="content.actionAdd" >Add</button>'+
+       '</div>'+
+       '<div class="btn-group btn-group-justified">'+
+          '<button v-bind:class="content.css.class_button" v-on:click="content.actionCheckAll(true)" >Check</button> '+
+          '<button v-bind:class="content.css.class_button" v-on:click="content.actionCheckAll(false)" >Uncheck</button>'+
+          '<button class="btn btn-sm btn-warning" v-on:click="content.actionClear" >Clear</button>'+
+       '</div>'+
+  '</section>'
 })

@@ -36,8 +36,13 @@ function setMarkOnMap( resultsMap, locationItem, markColor){
        });
 }
 
-function setdirectionsOnMap(directionsDisplay,directionsService,firstAddress, addresses, lastAddress){
-  directionsDisplay = new google.maps.DirectionsRenderer();
+function setdirectionsOnMap(directionsDisplay,directionsService,firstAddress, addresses, lastAddress, color){
+  directionsDisplay = new google.maps.DirectionsRenderer({
+    suppressMarkers: true,
+    polylineOptions: {
+      strokeColor: color
+    }
+  });
 
   usedDirectionsDisplays.push(directionsDisplay);
   directionsDisplay.setMap(map);
@@ -61,7 +66,7 @@ function setdirectionsOnMap(directionsDisplay,directionsService,firstAddress, ad
   })
 }
 
-function setDirections(locations){
+function setDirections(locations, color){
 //get just location`s text.
   var activatedItems = vueMapController.locations.filter(function (elem) {  if (elem.active == true) return elem});
   var locationsText = activatedItems.map(function (item){
@@ -74,7 +79,7 @@ function setDirections(locations){
   var length = locationsText.length;
   if (length < 20) {
     var lastAddress = locationsText[length - 1];
-    setdirectionsOnMap(directionsDisplay,directionsService,locationsText[0], locationsText.slice(1,length - 1), lastAddress)
+    setdirectionsOnMap(directionsDisplay,directionsService,locationsText[0], locationsText.slice(1,length - 1), lastAddress, color)
   }
   else {
     //create a rout to every 20 locations.
@@ -85,14 +90,14 @@ function setDirections(locations){
     do {
         var startAddress = locationsText[startIndex];
         var lastAddress = locationsText[lastIndex];
-        setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress)
-        startIndex = lastIndex+1;
+        setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress, color)
+        startIndex = lastIndex;
         lastIndex += 20;
         if (lastIndex >  locationsText.length){
           lastIndex = locationsText.length -1;
           var startAddress = locationsText[startIndex];
           var lastAddress = locationsText[lastIndex];
-          setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress)
+          setdirectionsOnMap(directionsDisplay,directionsService,startAddress, locationsText.slice(startIndex+1,lastIndex-1), lastAddress, color)
           noWaypointsLeft = true;
         }
     } while (!noWaypointsLeft);
