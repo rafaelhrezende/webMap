@@ -51,6 +51,12 @@ input {
 .form__input--short {
   width: 30%;
 }
+#headerColorInput {
+  display: block;
+  border: none;
+  width: 32px;
+  height: 32px;
+}
 html,
 body {
   width: 99%;

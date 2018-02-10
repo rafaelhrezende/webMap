@@ -16,8 +16,7 @@
       <div class='conteiner-fluid input-group input-group-justified'>
         <div class='btn-group btn-group-justified'>
           <button v-bind:class='class_button' v-on:click='setRoute'>Set Route</button>
-          <input class=" col-2" v-model="color" type="color"  > 
-          <button v-bind:class='class_button' v-on:click='markOnMap'>Mark Points</button>
+          <input id="headerColorInput"  v-bind:class='class_button' :style="{ 'background-color': color }" v-model="color" type="color"  > 
           <button v-bind:class='class_button' v-on:click='clearMap'>Clear Map</button>
         </div>
         <input  class='form__input--large' v-model='routePoints' >

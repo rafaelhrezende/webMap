@@ -2,7 +2,7 @@ var vueController = new Vue({
   el: '#HeaderControls',
   data: {
     title: 'Map Lab',
-    routePoints: 'Route Points (Separate by "to:")',
+    routePoints: 'Locations Separate by ";" - Try read me link to learn how create BHTrans`s bus-line route',
     color: '#FF776B',
     showCapture: false,
     class_button: ["btn", "btn-sm", "btn-primary"]
@@ -14,6 +14,18 @@ var vueController = new Vue({
         bhtrans.afterAddressAdd = "Belo Horizonte. MG";
         bhtrans.FromOldSiteVersionTable(vueMapController.locations);
       }
+      else if (this.routePoints.indexOf('to:' ==-1)){
+        var arrayLocations = this.routePoints.split(';');
+        let initialIndex = vueMapController.locations.length+1;
+        for (var index in arrayLocations) {
+            var location = new Location(
+              initialIndex ++,
+              arrayLocations[index].replace(new RegExp('\\+', 'g'), ' ')
+            );
+            location.color = '#563d7c';
+            vueMapController.locations.push(location);
+        }
+    }
       else {
         var arrayLocations = this.routePoints.split('to:');
         let initialIndex = vueMapController.locations.length+1;
