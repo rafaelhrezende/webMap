@@ -5,7 +5,15 @@ var vueController = new Vue({
     routePoints: 'Locations Separate by ";" - Try read me link to learn how create BHTrans`s bus-line route',
     color: '#FF776B',
     showCapture: false,
-    class_button: ["btn", "btn-sm", "btn-primary"]
+    class_button: ["btn", "btn-sm", "btn-primary"],
+    bhtrans: {
+      searchText: "Bus number (BHTrans)",
+      search: function(){
+        apiWS = new ApiWebScraping();
+        apiWS.getBHTrans(vueController.bhtrans.searchText, vueMapController.locations);
+        
+      }
+    }
   },
   methods: {
     loadLocations: function(){
@@ -85,21 +93,3 @@ var vueMapController = new Vue({
       }
     }
 })
-
-// var vueBHTransController = new Vue({
-//   el:'#IntBHTrans',
-//   data:{
-//     busCode: "s10"
-//   },
-//   methods: {
-//   load616: function(){
-//     loadBusInfo(616);
-//   },
-//   load617: function(){
-//       loadBusInfo(617);
-//     },
-//   Search: function(){
-//     BHTransIntegration(this.busCode);
-//   }
-//   }
-// })

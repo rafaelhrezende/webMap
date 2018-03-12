@@ -18,26 +18,29 @@
           <button v-bind:class='class_button' v-on:click='setRoute'>Set Route</button>
           <input id="headerColorInput"  v-bind:class='class_button' :style="{ 'background-color': color }" v-model="color" type="color"  > 
           <button v-bind:class='class_button' v-on:click='clearMap'>Clear Map</button>
+          <button v-bind:class='class_button' v-on:click='markOnMap'>Mark Points</button>
         </div>
-        <input  class='form__input--large' v-model='routePoints' >
+       <!-- <input  class='form__input--large' v-model='routePoints' >
         <button v-bind:class='class_button' v-on:click='loadLocations' >capture</button>
+       -->
+       <div class='conteiner-fluid input-group input-group-justified'>
+          <div class="input-group-addon">Beta</div>
+          <input type="text" v-model="bhtrans.searchText" />
+          <button v-bind:class='class_button' v-on:click="bhtrans.search" >Load</button>
+        </div>
     </div>
+    
     </section>
-    <!-- <nav class="header__nav">
-        <section id="IntBHTrans" class="header__nav__bus">
-          <a href="#" v-on:click='load616'>616</a>
-          <a href="#" v-on:click='load617'>617</a>
-          <input class='form__input--small' v-model="busCode" >
-          <button v-bind:class='class_button' v-on:click='Search'>Beta Search</button>
-        </section>
-    </nav> -->
+
     </section>
 
     <section class="aside__content" >
       <aside id='sideArea' class="sideArea" data-spy="scroll">
-        <section>
+        
+        <section> 
             <add-location v-bind:content='newLocation'></add-location>
         </section>
+
         <list-message
           v-for='item in locations' v-bind:content="item" v-bind:key='item.id'>
         </list-message>
@@ -54,6 +57,7 @@
 
     <script src="busInfo.js" charset="utf-8"></script>
     <script src="Integrations\BHTrans.js" charset="utf-8"></script>
+    <script src="Integrations\apiwebscraping.js" charset="utf-8"></script>
     <script src="vueController.js" charset="utf-8"></script>
     <script src="mapController.js" charset="utf-8"></script>
     <script async defer
